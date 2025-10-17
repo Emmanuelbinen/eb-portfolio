@@ -1,12 +1,11 @@
-import { useState } from 'react'
-import './App.css'
+import Navbar from "./sections/Navbar/Navbar"
 
 function App() {
 
   return (
-    <>
-      <h1>This is Emmanuel's Portfolio</h1>
-    </>
+    <div className="App">
+      <Navbar />
+    </div>
   )
 }
 

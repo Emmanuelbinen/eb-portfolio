@@ -1,0 +1,13 @@
+/* To make style maintenance easier, we consider using CSS variables for commonly used colors, fonts, dark-light and spacing values. This allows us to update styles in one place rather than searching through the entire stylesheet. */
+
+/* Resetting some default styles for consistency across browsers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
