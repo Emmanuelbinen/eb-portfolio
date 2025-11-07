@@ -1,13 +1,191 @@
-/* To make style maintenance easier, we consider using CSS variables for commonly used colors, fonts, dark-light and spacing values. This allows us to update styles in one place rather than searching through the entire stylesheet. */
+/* Modern, maintainable CSS using PostCSS nesting and best practices */
+/* All original features preserved: animations, scrollbars, responsive font scaling, etc. */
 
-/* Resetting some default styles for consistency across browsers */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import './variables.css';
+
+/* === Global Reset & Base === */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
-    overflow-x: hidden;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+::selection {
+  background-color: var(--primary-red);
+  color: #fff;
+}
+
+/* === Custom Scrollbar (WebKit) === */
+::-webkit-scrollbar {
+  width: 12px;
+
+  &-track {
+    background: var(--bg-secondary);
+  }
+
+  &-thumb {
+    background: var(--primary-red);
+    border-radius: 6px;
+
+    &:hover {
+      background: var(--accent-red);
+    }
+  }
+}
+
+/* === Utility Classes === */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Layout === */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* === Section Structure === */
+section {
+  padding: var(--spacing-xl) 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.section-title {
+  font-size: var(--font-size-xxl);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.title-underline {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-red), var(--accent-red));
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+/* === Keyframe Animations === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-100px) translateX(100px);
+  }
+  50% {
+    transform: translateY(-200px) translateX(-100px);
+  }
+  75% {
+    transform: translateY(-100px) translateX(-200px);
+  }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* === Responsive Typography & Layout === */
+@media (max-width: 1024px) {
+  :root {
+    --font-size-hero: 3rem;
+    --font-size-xxl: 2.5rem;
+    --font-size-xl: 1.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --font-size-hero: 2.5rem;
+    --font-size-xxl: 2rem;
+    --font-size-xl: 1.5rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 4rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --font-size-hero: 2rem;
+    --font-size-xxl: 1.75rem;
+    --font-size-xl: 1.25rem;
+  }
 }
