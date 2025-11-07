@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import useTypingEffect from '../../hooks/typingEffectAnimation.jsx';
+import useTypingEffect from '../../hooks/typingEffectAnimation.js';
 import styles from './Hero.module.css';
 
 // Constants
